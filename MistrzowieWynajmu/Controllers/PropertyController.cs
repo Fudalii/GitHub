@@ -32,7 +32,7 @@ namespace MistrzowieWynajmu.Controllers
 
 
         [HttpGet]
-        public IActionResult GetProperties ()
+        public IActionResult GetProperties()
         {
             return new JsonResult(_propertyRepository.GetAllProperty());
         }
@@ -47,8 +47,8 @@ namespace MistrzowieWynajmu.Controllers
 
 
 
-        [HttpPost ("[action]")]
-        public IActionResult AddProperty (Models.Property property)
+        [HttpPost("[action]")]
+        public IActionResult AddProperty([FromBody] Models.Property property)
         {
             if (!ModelState.IsValid)
             {
