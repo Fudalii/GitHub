@@ -2,7 +2,7 @@
 export class Property {
 
    public Id: number;
-   public PropertyType: Type;
+   public PropertyType: string;
    public Description: string;
    public Rooms: number;
    public Area: number;
@@ -13,10 +13,10 @@ export class Property {
    //public Owner: Owner;
 }
 
-  // enum Type {
-  //     House,
-  //     Flat
-  //      }
+   //enum Type {
+   //    House,
+   //    Flat
+   //     }
 
 
   // class Owner {
