@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\Models\Property.ts" />
+    <None Remove="ClientApp\app\property\Properties.component.ts" />
     <None Remove="ClientApp\app\property\services\PropertiesService.ts" />
     <None Remove="ClientApp\app\services\http-backend.ts" />
     <None Remove="ClientApp\app\services\property-backend.service.ts" />
@@ -31,6 +32,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\Models\Property.ts" />
+    <TypeScriptCompile Include="ClientApp\app\property\Properties.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\property\services\PropertiesService.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\http-backend.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\property-backend.service.ts" />

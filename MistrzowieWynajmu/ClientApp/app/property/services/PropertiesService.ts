@@ -7,7 +7,7 @@ import { PropertyBackendServices } from "../../services/property-backend.service
 import { HttpBackend } from "../../services/http-backend";
 
 @Injectable()
-export class PropetiesService {
+export class PropertiesService {
 
     constructor(private backend: PropertyBackendServices) { }
 
@@ -30,9 +30,6 @@ export class PropetiesService {
     deleteProperty(propertyId: Property): Observable<number> {
         return this.backend.deleteProperty(propertyId);
     };
-
-
-
 
 
 }
