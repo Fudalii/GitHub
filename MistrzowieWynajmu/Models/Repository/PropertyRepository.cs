@@ -17,18 +17,24 @@ namespace MistrzowieWynajmu.Models.Repository
 
         }
 
+
         // Pobierz wszystkie
+
         public List<Property> GetAllProperty()
         {
             return _databaseContext.Properties.ToList();
         }
 
-        //Pobierz po ID
+
+        //Pobierz 1 rekord po ID
+
         public Property GetProperty(int PropertyId)
         {
             return _databaseContext.Properties.Where(property => property.Id == PropertyId).FirstOrDefault();
         }
 
+
+        // POST dodanie rekordu
 
         public int AddProperty(Property property, Address addres, Owner owner)
         {
@@ -40,7 +46,7 @@ namespace MistrzowieWynajmu.Models.Repository
 
             property.Id = 0;
             property.Owner = owner;
-            property.Address = addres;
+            property.OwnerId = owner.OwnerId;
 
             property.Address = addres;
             property.AddressId = addres.AddressId;
@@ -52,15 +58,47 @@ namespace MistrzowieWynajmu.Models.Repository
 
         }
 
-        public void DeleteProperty(Property property, Address addres, Owner owner)
+        // Edit Property
+
+        public int EditProperty(Property property)
         {
-            throw new NotImplementedException();
+            if (property == null)
+            {
+                throw new Exception("Nieprawidłowe dane wejściowe");
+            }
+
+            _databaseContext.Properties.Update(property);
+            _databaseContext.SaveChanges();
+
+            return property.Id;
+             
         }
 
-        public int EditProperty(Property Property)
+
+
+    
+        // DELETE property
+
+        public void DeleteProperty(Property property, Address address, Owner owner)
         {
-            throw new NotImplementedException();
+
+            if (property == null || address == null || owner == null)
+            {
+                throw new Exception("Błąd danych wejściowych");
+            }
+
+            _databaseContext.Properties.Remove(property);
+            _databaseContext.SaveChanges();
+
+            _databaseContext.Addresses.Remove(address);
+            _databaseContext.SaveChanges();
+
+            _databaseContext.Owners.Remove(owner);
+            _databaseContext.SaveChanges();
+
         }
+
+      
 
     }
 }

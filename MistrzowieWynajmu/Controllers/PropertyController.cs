@@ -75,6 +75,61 @@ namespace MistrzowieWynajmu.Controllers
         }
 
 
+        // Update Property
+
+
+        [HttpPut("[action]")]
+        public IActionResult Updateproperty ([FromBody] Models.Property property)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _propertyRepository.EditProperty(property);
+
+            return new JsonResult(property.Id);
+        }
+
+
+
+
+        // Delete property
+
+        [HttpGet("[action]")]
+        public IActionResult DeleteProperty (int propertyId)
+        {
+            if (propertyId <= 0)
+            {
+                return BadRequest("Numer rekordu mniejszy od 1");
+            }
+
+            var property = _propertyRepository.GetProperty(propertyId);
+            if (property == null)
+            {
+                return NotFound("Nie znaleziono Property o takim Id");
+            }
+
+            var owner = _ownerRepository.GetOwner(property.OwnerId);
+            if (owner == null)
+            {
+                return NotFound("Nie znaleziono owner o takim Id");
+            }
+
+            var address = _addressRepository.GetAddress(property.AddressId);
+            if (address == null)
+            {
+                return NotFound("Nie znaleziono address o takim Id");
+            }
+
+            _propertyRepository.DeleteProperty(property, address, owner);
+
+            return new JsonResult(propertyId);
+
+
+        }
+
+
 
 
 
